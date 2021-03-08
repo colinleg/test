@@ -1,0 +1,222 @@
+Faire un tableau de balises audios avec différents chemins : 
+
+bAudio[0] = <div class="btnAudio"  onclick="playSound('an')"></div>  <audio id='an' src='sounds/an.wav'> </audio>
+bAudio[1] = <div class="btnAudio"  onclick="playSound('awn')"></div>  <audio id='an' src='sounds/awn.wav'> </audio>
+bAudio[2] = <div class="btnAudio"  onclick="playSound('anh')"></div>  <audio id='an' src='sounds/anh.wav'> </audio>
+
+function entierAleatoire(min, max)
+{
+ return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+idxAudio = (entierAleatoire(1,3)) -1;
+
+bAudio[idxAudio]
+answers[0] = "ăn"
+answers[1] = "an"
+answers[2] = "anh"
+
+var answer = answers[idxAudio]; 
+
+ex : 
+idx = 0
+donc on a bAudio[0] en question ( ăn ) 
+et answer[0] en réponse (ăn)
+
+idx = 1;
+donc on a bAudio[1] en question ( an ) 
+et answer[1] en réponse (an)
+
+idx =2;
+donc on a bAudio[2] en question ( anh ) 
+et answer[2] en réponse (anh)
+
+bRepAudio : 1.ce n'est pas anh c'est an 
+			  2.ce n'est pas ăn c'ést an 	
+		      	  3.ce n'est pas an c'est anh 	
+			  4.ce n'est pas ăn c'est anh 
+			  5.ce n'est pas anh c'est ăn 
+			   6.ce n'est pas an c'est ăn 
+
+donc 6 enregistrements + 3 (questions) pour un questionnaire à 3 questions. 
+donc 12 enregistrements + 6 questions pour deux questionnaires mêmes themes à 3 questions.
+
+
+
+
+
+
+En appuyant sur valider il faut : 
+
+imaginons que bonne réponse = b 
+if (rep = b){
+	bonne réponse  }
+
+else{ 
+if(rep = c) {afficher une vidéo ? le son ? du texte ? }
+if (rep= a) {afficher une vidéo ? le son ? du texte ?}
+}
+
+puis...
+
+Le bouton valider devient bouton exercice suivant.
+
+au clic, sur "exercice suivant" : 
+1.Envoyer le score (bool?) au gestionnaire de score.
+2.changer la page soit vers un modèle du meme type 
+				   soit vers un modèle différent (une autre page html)
+
+ce qu'on fait dans tous les cas  : 
+changer le bouton valider 
+
+ce qu'on fait bonne rép: 
+afficher du texte 
+renvoie  1 au gestionaire score 
+une variable pour changer exercice 
+
+ce qu'on fait mauvaise rép : 
+affiche texte + son 
+renvoie 0 au gestionaire score 
+une variable pour refaire le même exercice, mais avec du contenu différent 
++ une variable pour dire qu'on fait l'exercice pour la deuxieme fois 
+==> 3 fois maximum 
+
+===> il y a donc 3 exercice dans 1 exercice : 1 fois il faut devnier "ăn", 1 fois "an" 1 fois "anh"  
+ou aléatoire  ==> méthode Math.rand
+function entierAleatoire(min, max)
+{
+ return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+//Utilisation
+//La variable contient un nombre aléatoire compris entre 1 et 10
+var entier = entierAleatoire(1, 10);
+
+on peut se dire 6 par theme ... ce qui fait par ex 1 exercice : an, anh,  ăn ( 3combinaison) et 1 
+1 exercice man manh mạn 	
+
+
+
+
+Dans l’exercice à 3 réponses possible, suite à une quesion audio … 
+
+on a besoin de : 
+- 1 bonne réponse ( texte )
+- 2 mauvaises réponses ( texte)
+- 1 question ( audio )
+- 2 corrections ( audio )
+- 1 bravo ( texte )
+
+JSON ? 
+
+{ question (audio ) : bonne réponse (txt)
+   mvaise réponse 1 (audio ) : mauvaise rep 1(txt)
+mvaise reponse 2 ( audio ) : mauvaise rep 2 (txt)
+}
+
+mais aussi les textes de correction : 
+
+correction 1 : audio 1
+correction 2 : audio 2 
+
+donc on commence avec 3 fichiers audios de questions. 
+ q1.wav q2.wav q3.wav
+	et 3 valeurs corespondantes : 
+		r1.txt r2.txt r3.txt
+			puis 3 corrections correspondantes : 
+				c1.txt c2.txt c3.txt 
+					puis 3 audios correction correspondantes  
+						c1.wav c2.wav c3.wav 
+
+
+⇒ totale 12 variables pour 1 ex 
+
+var questAudio = [‘sounds/an.wav ‘,’sounds/anh.wav ‘, ‘sounds/ăn.wav’] ; // les 3 chemins ? Balises ? 
+var repTxt = [‘an’, ‘anh’, ‘ăn’] ; 
+var corTxt = [‘Bien joué tu as gagné’, ‘Ce nest pas anh cest an’, ‘ce nest pas an cest awn’] ; 
+var corAudio = [‘sounds/ok’,’sounds/anh-an.wav’,’sounds/an-awn.wav’]
+
+
+on a au début le nombre random nRand
+questAudio et repTxt sont liés donc questAudio[0] => repTxt [0]
+corTxt[0][0] = [‘Bien joué tu as gagné’, ‘Ce nest pas anh cest an’, ‘ce nest pas an cest awn’] ;
+puis association aux audios .
+
+Tableau et sous/tableaux : [{ « brep » : « bien joue »
+				« mrep1 » : « ce nest pas anh cest an »
+				« mrep2 » : « ce nest pas an cest ăn »
+			}] ===> corTxt 0 
+
+
+
+
+Associer 2 tableaux ? 
+MRep1 => corAudio1
+mpreo 2 =>corAudio2
+
+0 ⇒ 0/1 = 2 audios de correction pr l’ex 1
+1  ⇒  2/3 = 2 audios de correction pr l’ex 1’
+2 ⇒ 4/5 = 2 audios de correction pr l’ex 1 ‘’
+
+[0]Bravo ! C’est la bonne réponse !
+
+[1]ce n’est pas an c’est lay 
+[2]ce n’est pas nha c’est lay 
+
+[3]ce n’est pas lay c’est an 
+[4]ce n’est pas nha c’est an 
+
+[5]ce n’est pas an c’est nha 
+[6]ce n’est pas lay c’est nha 
+
+
+Valeurs 
+A = an
+B = lay 
+C = nha 
+
+valeurs de numEx entre 0 et 2
+valeur bRep entre 0 et 2 
+
+
+si numEx =1 && coché = lay 
+
+alors { corAudio = lay-an.wav}
+
+si numEx=1 && coché = nha 
+
+alors { corAudio = nha-an.wav)
+
+
+
+si numEx=2 && coché an
+alors coraudio = 
+
+
+
+
+
+
+
+
+
+
+utilisation de splice : 
+
+
+var mesPoissons  = ["scalaire", "clown", "mandarin", "chirurgien"];
+
+// supprime 0 élément à partir de l'index 2, et insère "tambour"
+var enleves = mesPoissons.splice(2, 0, "tambour");
+// mesPoissons est ["scalaire", "clown", "tambour", "mandarin", "chirurgien"]
+// enleves est [], aucun élément supprimé
+
+// supprime 1 élément à partir de l'index 3
+enleves = mesPoissons.splice(3, 1);
+// mesPoissons est ["scalaire", "clown", "tambour", "chirurgien"]
+// enleves est ["mandarin"]
+
+// supprime 1 élément à partir de l'index 2, et insère "trompette"
+enleves = mesPoissons.splice(2, 1, "trompette");
+// mesPoissons est ["scalaire", "clown", "trompette", "chirurgien"]
+// enleves est ["tambour"]
+copie de tableau en profondeur ⇒ var tab2 = [].concat(tab1) ;

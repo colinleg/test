@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>QCM Audio/Text</title>
+  <audio id='an' src='sounds/an.wav'> </audio>
+  <audio id='an-awn' src='sounds/corrections/an-awn_6.wav'> </audio>
+  <audio id='anh-awn' src='sounds/corrections/anh-awn_5.wav'> </audio>
+
+<script language="JavaScript">
+
+// function validerblue(){
+//   targValid.style.backgroundColor = 'rgb(186, 210, 246)';
+// }
+
+function playSound(nom){
+  var x = document.getElementById(nom);
+  console.log(x);
+  x.play();
+}
+
+// function valid(){
+//   targBonneRep = document.getElementById('r1');
+//  var correction = document.getElementById('correction');
+//   if(targBonneRep.checked){
+//     correction.innerHTML = "Vous avez réussi<br>la réponse était bien ăn !!!";
+//       }
+//       else{
+//           if(document.getElementById('r2').checked){
+//         var baliseCorrection = "<div id=\"btn-correction\" onclick=\"playSound('an-awn');validerblue()\"> Ecouter la réponse</div> ";
+//
+//             correction.innerHTML = "Ce n'est pas An, c'est ăn.<br>";
+//             correction.innerHTML += baliseCorrection;
+//           }
+//           else if(document.getElementById('r3').checked){
+//         var baliseCorrection = "<div id=\"btn-correction\" onclick=\"playSound('anh-awn')\"> Ecouter la réponse</div> ";
+//             correction.innerHTML = "Ce n'est pas Anh, c'est ăn.<br>";
+//             correction.innerHTML += baliseCorrection;
+//           }}
+//       correction.style.opacity = 1;
+//       var targValid = document.getElementById('valider');
+//       targValid.innerHTML = "Passer à la question suivante";
+
+// }
+// var awn = document.getElementById('an');
+// var anAwn = document.getElementById('an-awn');
+// var anhAwn = document.getElementById('anh-awn');
+//
+// function speedSlow(){
+// var slowCheckbox = document.getElementById('slowCheckbox');
+// var btnSlow = document.getElementById('slowLabel');
+//     if (slowCheckbox.checked){
+//       btnSlow.style.backgroundColor = "rgb(133, 177, 223)";
+//       awn.playbackRate = 0.7;
+//       anAwn.playbackRate = 0.7;
+//       anhAwn.playbackRate = 0.7;
+//       }
+//     else {
+//       btnSlow.style.backgroundColor = "rgb(237, 237, 237)";
+//       awn.playbackRate = 1 ;
+//       anAwn.playbackRate = 1;
+//       anhAwn.playbackRate = 1;
+//     }
+// }
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<form class="quiz">
+  <div id="ctnr1">
+    <div class="btnAudio"  onclick="playSound('an')"></div><br>
+    <div id="correction"></div>
+  </div>
+
+  <div id="setSpeed">
+<p> Ralentir la vitesse de l'audio :   </p>
+      <label class="switch" id="slowLabel"><input type="checkbox" id="slowCheckbox"/>    <div id="rondToggle"></div>
+      </label>
+
+  </div>
+
+<p> Après avoir écouté, quel mot correspond au son ci-dessus ? </p>
+<div id="radios">
+<p><input type="radio" name="q1" id="r1" value="ăn" id="ăn">ăn</p>
+<p><input type="radio" name="q1" id="r2" value="an">an</p>
+<p><input type="radio" name="q1" id="r3" value="anh">anh</p>
+</div>
+<div id="valider">Valider</div>
+</form>
+
+
+<script>
+
+// var targValid = document.getElementById('valider');
+// targValid.addEventListener("click", () => {valid()},false);
+//
+// var targRalAudio = document.getElementById('slowLabel');
+// targRalAudio.addEventListener("click", () =>  {speedSlow()},false);
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tests tableaux question Audio reponse Text correction Audio </title>
+  <script type="text/javascript" src="json/content.js"></script>
+  <script type="text/javascript" src="script/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" href="style.css">
+<script>
+
+function init(){
+
+// *********DECLARATION FONCTIONS*********
+
+  function playSound(nom){
+      var x = document.getElementById(nom);
+      console.log(x);
+      x.play();
+  }
+// blabla
+
+  function getRandom(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min +1)) + min;
+  }
+
+
+  function getQuest(n){
+      var idAudio = idAudios[n];
+      var qAudio = questAudios[n];
+      var creerBalAudio = document.createElement('audio');
+      creerBalAudio.id = idAudio ;
+      creerBalAudio.src = qAudio ;
+      document.body.appendChild(creerBalAudio);
+  }
+
+  function getidAudio(n){
+      var idAudio = idAudios[n];
+      return idAudio;
+  }
+
+  function createRadios(){
+    for(let i = 0; i < 3 ; i++){
+      let div = document.createElement('div');
+      let inp = document.createElement('input');
+      let label = document.createElement('label');
+      inp.type= "radio";
+      inp.name = "rep";
+      inp.value = idAudios[i];
+      inp.id = "r" + i;
+      label.for = inp.id.value;
+      let text = idAudios[i];
+
+
+      targRadio = document.getElementById('radios');
+      targRadio.appendChild(div);
+      targRadio.appendChild(inp);
+      targRadio.appendChild(label);
+      label.insertAdjacentText('afterend', text);
+    } // FIN for
+  } // FIN createRadios()
+
+  function checkRadios(){
+      checkedBox;
+      for(let i = 0; i < 3; i++){
+      idBtn = "r" + i.toString();
+      x = document.getElementById(idBtn);
+         if(x.checked){checkedBox = x.value;}
+      }
+    }
+
+  function comparewithBRep(){
+    if(bRep == checkedBox){ console.log(corTexts[0]); }
+    else{ console.log("Ce n'est pas " + checkedBox + ", c'est " + bRep); }
+  }
+
+  function findBadResp(n){
+    var mRep = [].concat(idAudios);
+    mRep.splice(n,1);
+    console.log(mRep);
+  }
+
+  function findbRepAudio(){
+    console.log(checkedBox);
+    console.log(bRep);
+    var brepAudio = $('[id^='+checkedBox+'][id$='+bRep+']');
+    console.log(brepAudio[0]);
+    playSound(brepAudio[0].id);
+  }
+
+// *********DECLARATION VARIABLES*********
+
+numEx = getRandom(0,2); // = un numéro au choix : 0/1/2
+var idAudio = getidAudio(numEx);
+bRep = idAudios[numEx];
+var checkedBox;
+var corAudio = 0;
+var mRep;
+
+
+
+
+// *********DEROULEMENT*********
+
+getQuest(numEx);
+
+var btnplaySound = document.getElementById('btnplaySound');
+btnplaySound.addEventListener("click",() => {playSound(idAudio);});
+
+createRadios();
+
+var btncheckRadios = document.getElementById('btncheckRadios');
+btncheckRadios.addEventListener("click",function(){
+  checkRadios();
+  comparewithBRep();
+  findbRepAudio();
+});
+
+
+} // fin INIT
+
+document.addEventListener("DOMContentLoaded", function()
+ {
+     init();
+ }, false);
+
+</script>
+
+</head>
+<body>
+<div id="audioValues">
+
+  <audio id='an-lay' src='sounds/corrections/an-lay-c.wav'> </audio>
+  <audio id='nha-lay' src='sounds/corrections/nha-lay-c.wav'> </audio>
+  <audio id='lay-an' src='sounds/corrections/lay-an-c.wav'> </audio>
+  <audio id='nha-an' src='sounds/corrections/nha-an-c.wav'> </audio>
+  <audio id='an-nha' src='sounds/corrections/an-nha-c.wav'> </audio>
+  <audio id='lay-nha' src='sounds/corrections/lay-nha-c.wav'> </audio>
+</div>
+<button id="btnplaySound">play </button>
+<button id="btncheckRadios">check </button>
+<div id="radios"></div>
+</body>
+</html>

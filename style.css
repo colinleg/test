@@ -1,0 +1,189 @@
+@font-face {
+font-family: 'mathlete';
+src: url("font/Mathlete-Bulky.otf");
+
+}
+@font-face {
+  font-family: 'bevietnam';
+  src : url("font/BeVietnam-Medium.ttf");
+}
+
+body{
+  background-color: rgb(255, 255, 250);
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'bevietnam', serif;
+}
+
+.btnAudio{
+  margin-top: 18vh;
+  margin-bottom: 3vh;
+  width: 20vw;
+  height: 35vh;
+  background-image: url("play.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition-duration: 0.4s;
+    /* background-color: red; */
+}
+
+.btnAudio:hover{
+  transform: scale(0.9);
+  cursor: pointer;
+
+  /* transform: rotate(1turn); */
+}
+
+.btnAudio:active{
+  filter: brightness(0.4);
+}
+#setSpeed{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  /* background-color:  red; */
+}
+.audiospeed{
+  margin : 1vh;
+  margin-left : 2.5vh;
+  padding : 2vh;
+  border: 1px groove black;
+  background-color: rgb(250, 219, 255);
+
+}
+
+.audiospeed:hover{
+  cursor : pointer;
+  background-color: rgb(163, 129, 208);
+}
+
+.audiospeed:active{
+  filter: brightness(0.5);
+}
+
+#slow{
+
+}
+#radios{
+  display: flex;
+  flex-flow: row;
+  /* background-color: red; */
+  justify-content: space-around;
+  width: 80vw;
+
+}
+
+#valider{
+  margin-top: 4vh;
+  border: 1px groove black ;
+  padding : 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: brightness 0.4s;
+  transition: background-color 1.5s;
+  transition-delay: 2s;
+  background-color: white;
+}
+
+#valider:hover{
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+#valider:active{
+  /* background-color: black; */
+  transform:scale(0.9);
+
+}
+#ctnr1{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#correction{
+  margin-top: 18vh;
+  width : 30vw;
+  height: 35vh;
+  /* background-color: tomato; */
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+
+#btn-correction{
+  margin-top : 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vh;
+  width : 15vw;
+  height: 15vh;
+  border: 1px solid black;
+  background-color:rgb(185, 226, 183) ;
+  transition: border-radius 0.2s;
+}
+
+#btn-correction:hover{
+  background-color: rgb(136, 175, 134);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+/*
+Switch  */
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch {
+  display: inline-block;
+  margin-top: 1vh;
+  margin-left: 16vh;
+  font-size: 3.5vh; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: rgb(237, 237, 237);
+  border-radius: 2em;
+  border: 1px groove rgb(223, 221, 212);
+
+}
+
+.switch:hover{
+  cursor : pointer;
+}
+
+
+#rondToggle:hover{
+  cursor : pointer;
+}
+
+#rondToggle {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: rgb(235, 235, 235);
+  box-shadow: 0 0.1em 0.3em rgba(0,0,0,0.3);
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
